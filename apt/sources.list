@@ -1,24 +1,24 @@
-# 
-
-# deb cdrom:[Debian GNU/Linux 6.0.3 _Squeeze_ - Official amd64 NETINST Binary-1 20111008-19:52]/ squeeze main
-
-#deb cdrom:[Debian GNU/Linux 6.0.3 _Squeeze_ - Official amd64 NETINST Binary-1 20111008-19:52]/ squeeze main
-
+# Main repo
 deb http://mirror.yandex.ru/debian/ squeeze main non-free contrib
-deb http://mirror.yandex.ru/debian/ wheezy main non-free contrib
-deb http://backports.debian.org/debian-backports squeeze-backports main
 deb-src http://mirror.yandex.ru/debian/ squeeze main non-free contrib
 
+# Security updates
 deb http://security.debian.org/ squeeze/updates main contrib non-free
-#deb-src http://security.debian.org/ squeeze/updates main contrib non-free
+deb-src http://security.debian.org/ squeeze/updates main contrib non-free
 
-# squeeze-updates, previously known as 'volatile'
-#deb http://mirror.yandex.ru/debian/ squeeze-updates main contrib non-free
+# php52 if need
 deb http://debian.best-hosting.ru binary/
-#deb http://mirror.yandex.ru/debian/ squeeze-updates main contrib non-free
 
+# backports
+deb http://backports.debian.org/debian-backports squeeze-backports main
+
+# wheezy
+deb http://mirror.yandex.ru/debian/ wheezy main non-free contrib
+
+# sid
 deb http://ftp.ru.debian.org/debian sid main contrib non-free
 deb-src http://ftp.ru.debian.org/debian sid main contrib non-free
 
+# experemental
 deb http://ftp.ru.debian.org/debian experimental main contrib non-free
 deb-src http://ftp.ru.debian.org/debian experimental main contrib non-free

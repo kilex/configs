@@ -1,0 +1,78 @@
+server {
+	listen   146.255.192.18:80; ## listen for ipv4; this line is default and implied
+
+	root /var/www/piratesaga;
+	#index index.html index.htm;
+
+	# Make site accessible from http://localhost/
+	server_name .pirate.lvll.ru;
+	
+	access_log  /var/log/nginx/piratesaga.access.log;
+        error_log  /var/log/nginx/piiratesaga.error.log;
+
+	#limit_conn perip 5;
+        #limit_conn perserver 500;
+
+	#limit_rate_after 1m;
+	limit_rate       100k;
+
+	location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|txt|tar|wav|bmp|rtf|js|mp3)$ {
+                expires 12h;
+                add_header Cache-Control public;
+                #autoindex on;
+          }
+	location ~* ^.+\.(swf)$ {
+                expires 12h;
+		limit_rate       500k;
+                add_header Cache-Control public;
+                #autoindex on;
+          }
+        location /nginx-status {
+                stub_status on;
+                access_log off;
+                allow 188.40.41.205;
+                deny all;
+        }
+}
+server {
+	listen   146.255.192.18:80; ## listen for ipv4; this line is default and implied
+
+	server_name .admin.pirate.lvll.ru;
+	
+	access_log  /var/log/nginx/piratesaga.access.log;
+        error_log  /var/log/nginx/piiratesaga.error.log;
+
+	#limit_conn perip 10;
+        #limit_conn perserver 500;
+        location / {
+                proxy_pass         http://localhost:8080;
+                proxy_redirect     off;
+
+                #proxy_set_header   Host             $host;
+                #proxy_set_header X-Real-IP $remote_addr;
+                #proxy_set_header X-Host $http_host;
+                #proxy_set_header X-URI $uri;
+                #proxy_set_header X-ARGS $args;
+                #proxy_set_header Refer $http_refer;
+                #proxy_set_header   X-Server-IP      $server_addr;
+                #proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+                
+                client_max_body_size       10m;
+                client_body_buffer_size    256k;
+                proxy_connect_timeout      120;
+                proxy_send_timeout         120;
+                proxy_read_timeout         120;
+                proxy_buffer_size          128k;
+                proxy_buffers              32 128k;
+                proxy_busy_buffers_size    128k;
+                proxy_temp_file_write_size 128k;
+
+                #proxy_cache static;
+                #proxy_cache_valid  10m;
+                #proxy_cache_valid  any 5s;
+
+                #add_header Cache-Control private;
+                #expires 10m;
+             }
+	
+}

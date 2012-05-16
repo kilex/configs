@@ -1,46 +1,40 @@
 server {
-	listen   146.255.192.18:80; ## listen for ipv4; this line is default and implied
+	listen   192.168.1.1:80; ## listen for ipv4; this line is default and implied
 
-	root /var/www/piratesaga;
+	root /var/www/site;
 	#index index.html index.htm;
 
 	# Make site accessible from http://localhost/
-	server_name .pirate.lvll.ru;
+	server_name .server.ru;
 	
-	access_log  /var/log/nginx/piratesaga.access.log;
-        error_log  /var/log/nginx/piiratesaga.error.log;
+	access_log  /var/log/nginx/access.log;
+        error_log  /var/log/nginx/error.log;
 
-	#limit_conn perip 5;
+	limit_conn perip 30;
         #limit_conn perserver 500;
 
 	#limit_rate_after 1m;
-	limit_rate       100k;
-
-	location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|txt|tar|wav|bmp|rtf|js|mp3)$ {
+	limit_rate       1000k; # Огранчиваем скорость 1мб/с для всех
+	
+	location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|txt|tar|wav|bmp|rtf|js)$ {
                 expires 12h;
-                add_header Cache-Control public;
-                #autoindex on;
-          }
-	location ~* ^.+\.(swf)$ {
-                expires 12h;
-		limit_rate       500k;
                 add_header Cache-Control public;
                 #autoindex on;
           }
         location /nginx-status {
                 stub_status on;
                 access_log off;
-                allow 188.40.41.205;
+                allow 192.168.1.2; # Доступ только с заббикса
                 deny all;
         }
 }
 server {
-	listen   146.255.192.18:80; ## listen for ipv4; this line is default and implied
+	listen   192.168.1.3:80; ## listen for ipv4; this line is default and implied
 
-	server_name .admin.pirate.lvll.ru;
+	server_name .admin.server.ru; # 2 интерфейс проксирует на апач
 	
-	access_log  /var/log/nginx/piratesaga.access.log;
-        error_log  /var/log/nginx/piiratesaga.error.log;
+	access_log  /var/log/nginx/access.log;
+        error_log  /var/log/nginx/error.log;
 
 	#limit_conn perip 10;
         #limit_conn perserver 500;

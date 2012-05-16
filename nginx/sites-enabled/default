@@ -21,6 +21,12 @@ server {
                 add_header Cache-Control public;
                 #autoindex on;
           }
+	 	location ~* ^.+\.(swf)$ {
+	        expires 12h;
+			limit_rate       500k; # Флешки грузим помедленней
+            add_header Cache-Control public;
+            #autoindex on;
+         }
         location /nginx-status {
                 stub_status on;
                 access_log off;

@@ -13,6 +13,7 @@ alias ll='ls $LS_OPTIONS -l'
 alias l='ls $LS_OPTIONS -lA'
 #
 export SVN_EDITOR=vim
+export GREP_OPTIONS='--color=auto'
 # Some more alias to avoid making mistakes:
 # alias rm='rm -i'
 # alias cp='cp -i'

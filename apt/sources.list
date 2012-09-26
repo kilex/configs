@@ -6,6 +6,10 @@ deb-src http://mirror.yandex.ru/debian/ squeeze main non-free contrib
 deb http://security.debian.org/ squeeze/updates main contrib non-free
 deb-src http://security.debian.org/ squeeze/updates main contrib non-free
 
+# Dotdeb http://www.dotdeb.org/
+deb http://packages.dotdeb.org squeeze all
+deb-src http://packages.dotdeb.org squeeze all
+
 # php52 if need
 deb http://debian.best-hosting.ru binary/
 

@@ -14,6 +14,17 @@ alias l='ls $LS_OPTIONS -lA'
 #
 export SVN_EDITOR=vim
 export GREP_OPTIONS='--color=auto'
+
+# extended logging
+shopt -s histappend
+PROMPT_COMMAND='history -a'
+
+# no dublicates
+export HISTCONTROL="ignoredups"
+
+# cd error checker
+shopt -s cdspell
+shopt -s dirspell
 # Some more alias to avoid making mistakes:
 # alias rm='rm -i'
 # alias cp='cp -i'

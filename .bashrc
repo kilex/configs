@@ -15,6 +15,11 @@ alias l='ls $LS_OPTIONS -lA'
 export SVN_EDITOR=vim
 export GREP_OPTIONS='--color=auto'
 
+# enable bash completion in interactive shells
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
 # extended logging
 shopt -s histappend
 PROMPT_COMMAND='history -a'

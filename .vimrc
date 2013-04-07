@@ -15,29 +15,10 @@ set smartindent
 set incsearch
 set hlsearch
 
-set backup
+" Backup
+"set backup
 
-"" сохранять умные резервные копии ежедневно
-"function! BackupDir()
-"" определим каталог для сохранения резервной копии
-"let l:backupdir=$HOME.'/.vim/backup/'.
-"        \substitute(expand('%:p:h'), '^'.$HOME, '~', '')
-"
-"" если каталог не существует, создадим его рекурсивно
-"    if !isdirectory(l:backupdir)
-"    call mkdir(l:backupdir, 'p', 0700)
-"endif
-"
-"   " переопределим каталог для  резервных копий
-"let &backupdir=l:backupdir
-"   " переопределим расширение файла резервной копии
-"let &backupext=strftime('~%Y-%m-%d_%H-%M~')
-"endfunction
-"
-"" выполним передзаписью буффера надиск
-"autocmd! bufwritepre *
-"call BackupDir()
-
+" Show numbers on string
 "set number
 "set t_Co=256
 "colorscheme calmar256-dark
